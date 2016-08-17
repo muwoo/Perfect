@@ -1,0 +1,63 @@
+body {
+  background-color: #F0F3F4;
+  font-family: '微软雅黑';
+  font-size: 12px;
+  .container {
+    width: 1280px;
+    margin: 0 auto;
+    text-align: center;
+    .container-login{
+      margin-top: 100px;
+      .login-title {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+      .login-info{
+        margin-bottom: 20px;
+      }
+      .login-form{
+        .form-group{
+          margin-bottom: 0px;
+          .login-input{
+            background: #fff;
+            width: 330px;
+            height: 48px;
+            border: 0px;
+            padding-left: 10px;
+            outline: none;
+          }
+          .login-btn{
+            margin-top: 10px;
+            background: #9E97CE;
+            color:#fff;
+            font-size: 14px;
+          }
+        }
+        :nth-child(1){
+          .login-input{
+            border-bottom: 1px solid #F0F3F4;
+          }
+        }
+      }
+      .info-area{
+        .forgot-pwd-info,.register-info{
+          margin-top: 20px;
+        }
+        .to-register{
+          width: 330px;
+          height: 48px;
+          margin-top: 20px;
+          background: #fff;
+        }
+        .to-register:hover{
+          background: #eee;
+        }
+      }
+      .err-msg{
+        color:#bf1f2e;
+        margin-top: 10px;
+        visibility: hidden;
+      }
+    }
+  }
+}
