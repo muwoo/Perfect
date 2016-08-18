@@ -1,0 +1,75 @@
+.navbar {
+  border:1px solid #665CA7;
+  margin-bottom: 0px;
+  position: fixed;
+  top: 0px;
+  border-radius: 0px;
+  width: 100%;
+  background: #7266BA;
+
+  .hide-li {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    text-align: center;
+    float: right;
+    margin-right: 20px;
+    font-size: 20px;
+    display: none;
+  }
+  .navbar-header {
+    width: 300px;
+    .navbar-brand {
+      color: #fff;
+    }
+  }
+  .nav-container {
+    ul {
+      a {
+        color: #fff;
+      }
+    }
+  }
+  .perfect-login{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    text-align: center;
+    float: right;
+    margin-right: 20px;
+    font-size: 14px;
+    color:#fff;
+  }
+  .logout{
+    cursor: pointer;
+  }
+}
+
+.perfect-pills {
+  background: #7266BA;
+  float: left;
+  width: 100%;
+  position: fixed;
+  top: 50px;
+  display: none;
+  li {
+    border-top:1px solid #665CA7;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    .nav-container {
+      margin-top: -50px;
+    }
+    .navbar-nav {
+      display: none;
+    }
+    .hide-li {
+      display: inline-block;
+    }
+  }
+}

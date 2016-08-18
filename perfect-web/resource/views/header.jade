@@ -1,0 +1,24 @@
+nav.navbar.navbar-default.perfect-nav(role='navigation')
+  .navbar-header
+    a.navbar-brand Perfect
+  .nav-container
+    ul.nav.navbar-nav
+      li.active
+        a IOS
+      li
+        a SVN
+    span.hide-li.fa.fa-bars
+    if(user.username)
+      a(href='/logout').perfect-login.logout 登出
+      .perfect-login #{user.username}
+    else
+      a(href='/login').perfect-login 登录
+ul.nav.nav-pills.nav-stacked.perfect-pills
+  li
+    a Home
+  li
+    a IOS
+  li
+    a SVN
+
+
