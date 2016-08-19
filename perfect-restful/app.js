@@ -39,11 +39,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../perfect-web/public')));
 
-//路由
+//用户路由
 app.get('/', routes.index);
 app.get('/login', users.renderLogin);
 app.post('/ajaxLogin', users.login);
 app.get('/logout', users.logout);
+
+//个人动态路由
+app.post('/getDynamic', users.getDynamic);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

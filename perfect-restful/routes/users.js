@@ -52,7 +52,9 @@ exports.users = {
           } else {
             for(var i = 0;i<result.length;i++){
               if(mixCrypto.decrypt(result[i].password) === password){
+                console.log(result[i])
                 req.session.user = username;
+                req.session.userid = result[i].id;
                 res.render('index', {'user': username});
                 return;
               }
@@ -69,5 +71,25 @@ exports.users = {
   logout: function (req, res) {
     req.session.user = null;
     res.redirect('/login');
+  },
+  getDynamic: function(req, res) {
+    var id = req.session.userid;
+    req.getConnection(function (err, conn) {
+      if (err) {
+        return next(err);
+      } else {
+        conn.query('select * from user_dynamic where id = "' + id +'"', [], function (err, result) {
+          if (err) {
+          } else {
+            console.log(result);
+            if(result.length){
+              res.send({'status': 0, 'result': result});
+              return;
+            }
+            res.send({'status': 1, 'msg': '查询错误'});
+          }
+        });
+      }
+    })
   }
 };

@@ -2,6 +2,20 @@ extends layout
 
 block content
   .index-container
-    h1= user.title
-    p Hello #{user.username}
-      | let we go
+    .index-top
+      .person-content
+        .conten-left.col-sm-7
+          img.person-header(src='../images/a0.jpg')
+          span.user-info
+            span.username
+              span #{user.username}
+              span.from from China
+        .content-right.col-sm-5
+          span.following
+            span.num.h3.block.font-bold 200
+            span.info Following
+          span.followers
+            span.num.h3.block.font-bold 2K
+            span.info Followers
+    .index-content
+
