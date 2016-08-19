@@ -12,6 +12,7 @@ $loginContainer.on('click','.login-btn',function(e){
       window.location.href = '/';
     }
     else{
+
       $('.err-msg').css('visibility','visible');
       $('.err-msg').text(err.msg);
     }
