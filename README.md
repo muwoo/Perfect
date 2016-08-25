@@ -38,5 +38,4 @@
 ######2.启动：
     cd Perfect/perfect-restful
     npm start
-    http://localhost:3000
 
