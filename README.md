@@ -35,6 +35,16 @@
       primary key (`id`),
       unique key `user__username` (`username`)
     ) engine=innodb default charset=utf8 collate=utf8_bin;
+
+    create table `user_dynamic` (
+          `username` varchar(50) default null,
+          `dynamic_text` varchar(500) default null,
+          `dynamic_commend` varchar(300) default null,
+          `creationDate` bigint(20) default null,
+          `image` varchar(100) default null,
+          `id` varchar(32) NOT null,
+        ) engine=innodb default charset=utf8 collate=utf8_bin;
+
 ######2.启动：
     cd Perfect/perfect-restful
     npm start
