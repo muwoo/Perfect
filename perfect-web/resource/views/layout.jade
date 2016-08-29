@@ -5,12 +5,14 @@ html
     link(href="//libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css",rel="stylesheet")
     link(href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet")
     link(rel='stylesheet', href='/css/index.css')
-  body
+  body(ng-app='myApp',ng-controller='indexCtrl')
     include header
     include slider
     block content
-  script.
-    var _username = '#{user.username}'
-  script(src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js")
-  script(src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js")
-  script(src="/js/index.js")
+  block scripts
+    script.
+      var _username = '#{user.username}'
+    script(src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js")
+    script(src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js")
+    script(src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js")
+    script(src="/js/index.js")

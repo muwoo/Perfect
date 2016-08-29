@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .index-container
+  .index-container(ng-controller='dynamicCtrl')
     .index-top
       .person-content
         .conten-left.col-sm-7
@@ -18,4 +18,13 @@ block content
             span.num.h3.block.font-bold 2K
             span.info Followers
     .index-content
+      .editDynamic
+        textarea.myDynamic(ng-model='myDynamic',placeholder='说点什么吧...')
+        .edit-area
+          span.face
+          button.comment.btn.btn-info.pull-right.btn-sm(ng-click='comment()') 发送
+      .dynamic-eare
+//append scripts
+//  script(src='/js/compressed/main/dynamic.controller.js')
+
 

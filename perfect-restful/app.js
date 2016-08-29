@@ -47,7 +47,7 @@ app.get('/logout', users.logout);
 
 //个人动态路由
 app.post('/getDynamic', users.getDynamic);
-
+app.post('/comment', users.comment);
 
 
 // catch 404 and forward to error handler
