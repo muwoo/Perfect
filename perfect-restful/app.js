@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users').users;
+var charts = require('./routes/charts');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
@@ -46,6 +47,9 @@ app.get('/logout', users.logout);
 //个人动态路由
 app.post('/getDynamic', users.getDynamic);
 app.post('/comment', users.comment);
+
+//图表
+app.get('/charts', charts.charts);
 
 
 // catch 404 and forward to error handler

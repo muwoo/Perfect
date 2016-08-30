@@ -8,8 +8,14 @@
             i.fa.fa-file-o
             span pages
             i.fa.fa-angle-right
-      #collapseOne.panel-collapse.collapse.in
-        .panel-body sfdfsf
+      if(user.index)
+        #collapseOne.panel-collapse.collapse.in
+          .panel-body
+            a(href='/') mian Page
+      else
+        #collapseOne.panel-collapse.collapse
+          .panel-body
+            a(href='/') mian Page
     .panel.panel-default
       .panel-heading
         .panel-title
@@ -17,7 +23,12 @@
             i.fa.fa-bar-chart
             span charts
             i.fa.fa-angle-right
-      #collapseTwo.panel-collapse.collapse
-        .panel-body sfdfsf  123
-
+      if(user.charts)
+        #collapseTwo.panel-collapse.collapse.in
+          .panel-body
+            a(href='/charts') charts Test
+      else
+        #collapseTwo.panel-collapse.collapse
+          .panel-body
+            a(href='/charts') charts Test
 
