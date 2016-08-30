@@ -17,6 +17,19 @@ var babel= require('gulp-babel');
 var JSSrc = './resource/js/*.js';
 var JSDest = './public/js/compressed';
 
+//
+//var jade = require('gulp-jade');
+//
+//gulp.task('jade', function() {
+//  return gulp.src('./resource/views/**/*.jade')
+//    .pipe(jade())
+//    .pipe(gulp.dest('./resource/html'));
+//});
+//
+//gulp.task('watch', function() {
+//  gulp.watch('**/*.jade', ['jade']);
+//});
+
 gulp.task('minifyjs', function() {
     return gulp.src([JSSrc,'./resource/js/**/*.js'])
       .pipe(babel({

@@ -4,7 +4,7 @@ import {myApp} from './main';
 //动态区域
 function setDynamicHTML(opt) {
   return '<div class="title-content">' +
-    '<img class="title-img" src="../images/a0.jpg">' +
+    '<img class="title-img" src="public/images/a0.jpg">' +
     '<p class="title-name">' + opt.name + '</p>' +
     '<p class="title-time">' + opt.time + '</p>' +
     '<p class="title-text">' + opt.text + '</p>' +
@@ -55,6 +55,7 @@ myApp.controller('dynamicCtrl', function ($scope, server) {
         $('.dynamic-eare').empty();
         server.post('/getDynamic', {}, function (err, result) {
           if (!err) {
+            toastr.success('发表成功');
             $.each(result.result, function (i, r) {
               var opts = {
                 name: r.username,

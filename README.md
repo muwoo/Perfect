@@ -1,10 +1,12 @@
 # Perfect
 
 ##项目安装
-
+    安装nodejs
 ####前端
     cd Perfect/perfect-web
+    npm install bower -g
     npm install
+    bower install
     gulp build
     gulp watch
 

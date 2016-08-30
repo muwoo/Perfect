@@ -3,7 +3,7 @@ html
   head
     title= title
     link(href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css",rel="stylesheet")
-    link(rel='stylesheet', href='/css/login.css')
+    link(rel='stylesheet', href='public/css/login.css')
   body(ng-app='myApp',ng-controller="loginCtrl")
     .container
       .container-login
@@ -22,8 +22,8 @@ html
           .register-info 注册一个新账号
           button.to-register.btn 创建账号
 
-  script(src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js")
-  script(src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js")
-  script(src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js")
-  script(src="/js/login.js")
+  script(src="bower_components/jquery/dist/jquery.min.js")
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+  script(src="bower_components/angular/angular.min.js")
+  script(src="public/js/login.js")
 
