@@ -24,6 +24,11 @@ block content
           span.face
           button.comment.btn.btn-info.pull-right.btn-sm(ng-click='comment()') 发送
       .dynamic-eare
+        .title-content(ng-repeat="result in results")
+          img.title-img(src='public/images/a0.jpg')
+          p.title-name {{result.username}}
+          p.title-time {{result.creationDate}}
+          p.title-text {{result.dynamic_text}}
 //append scripts
 //  script(src='/js/compressed/main/dynamic.controller.js')
 
