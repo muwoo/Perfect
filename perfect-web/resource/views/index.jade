@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .index-container(ng-controller='dynamicCtrl')
+  .index-container(ng-controller='indexCtrl')
     .index-top
       .person-content
         .conten-left.col-sm-7
@@ -29,7 +29,7 @@ block content
           p.title-name {{result.username}}
           p.title-time {{result.creationDate}}
           p.title-text {{result.dynamic_text}}
-//append scripts
-//  script(src='/js/compressed/main/dynamic.controller.js')
+append scripts
+  script(src="public/js/index.js")
 
 

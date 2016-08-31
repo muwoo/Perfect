@@ -1,6 +1,6 @@
-export var myApp = angular.module("myApp", []);
+var myAppTest = angular.module("myAppTest", []);
 
-myApp.service('server', function ($http) {
+myAppTest.service('server', function ($http) {
   this.ajax = function (type, url, data, callback) {
     $http({
       method: type,

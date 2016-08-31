@@ -1,5 +1,6 @@
 import {formatDate} from './common/format-time';
-import {myApp} from './main';
+
+var myApp = angular.module('myApp',['myAppTest']);
 
 //首页
 myApp.controller('indexCtrl', function ($scope, server) {
