@@ -1,16 +1,17 @@
-var myAppTest = angular.module("myAppTest", ['ngRoute']);
-myAppTest.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-      .when("/page", {
-        templateUrl: "/page"
-      })
-      .when("/charts", {
-        templateUrl: "/charts"
-      })
-      .otherwise({
-        redirectTo: "/page"
-      });
-  }]);
+var myAppTest = angular.module("myAppTest", ['ui.router']);
+myAppTest.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/page');
+  $stateProvider.state('page', {
+      url: '/page',
+      templateUrl: '/page',
+      controller: 'indexCtrl'
+    })
+    .state('charts', {
+      url: '/charts',
+      templateUrl: '/charts',
+      controller: 'chartsCtrl'
+    });
+}]);
 
 myAppTest.service('server', function ($http) {
   this.ajax = function (type, url, data, callback) {

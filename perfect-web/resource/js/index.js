@@ -25,11 +25,6 @@ myApp.controller('indexCtrl', function ($scope, server) {
       })
     }
   })
-});
-
-//发表动态
-
-myApp.controller('dynamicCtrl', function ($scope, server) {
   $scope.comment = function (e) {
     server.post("/comment", {
       'username': _username,
@@ -49,5 +44,6 @@ myApp.controller('dynamicCtrl', function ($scope, server) {
       }
     })
   };
-
 });
+
+

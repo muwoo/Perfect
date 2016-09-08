@@ -81,7 +81,6 @@ exports.users = {
         conn.query('select * from user_dynamic where id = "' + id +'" order by creationDate desc', [], function (err, result) {
           if (err) {
           } else {
-            console.log(result);
             if(result.length){
               res.send({'status': 0, 'result': result});
               return;
@@ -103,7 +102,6 @@ exports.users = {
         conn.query('insert into user_dynamic (username,dynamic_text,creationDate,id) values("'+req.session.user+'","'+req.body.content+'","'+req.body.date+'","'+req.session.userid+'")', [], function (err, result) {
           if (err) {
           } else {
-            console.log(result);
             res.send({'status': 0, 'result': result});
             //if(result.length){
             //  res.send({'status': 0, 'result': result});
