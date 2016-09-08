@@ -92,6 +92,9 @@ exports.users = {
       }
     })
   },
+  page:function(req, res){
+    res.render('index',{user:{title: '个人中心',username:req.session.user,index:true} })
+  },
   comment: function(req, res){
     req.getConnection(function (err, conn) {
       if (err) {

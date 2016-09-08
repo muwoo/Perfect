@@ -46,6 +46,7 @@ app.get('/logout', users.logout);
 
 //个人动态路由
 app.post('/getDynamic', users.getDynamic);
+app.get('/page', users.page);
 app.post('/comment', users.comment);
 
 //图表

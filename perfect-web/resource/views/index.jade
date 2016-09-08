@@ -1,35 +1,32 @@
-extends layout
 
-block content
-  .index-container(ng-controller='indexCtrl')
-    .index-top
-      .person-content
-        .conten-left.col-sm-7
-          img.person-header(src='public/images/a0.jpg')
-          span.user-info
-            span.username
-              span #{user.username}
-              span.from from China
-        .content-right.col-sm-5
-          span.following
-            span.num.h3.block.font-bold 200
-            span.info Following
-          span.followers
-            span.num.h3.block.font-bold 2K
-            span.info Followers
-    .index-content
-      .editDynamic
-        textarea.myDynamic(ng-model='myDynamic',placeholder='说点什么吧...')
-        .edit-area
-          span.face
-          button.comment.btn.btn-info.pull-right.btn-sm(ng-click='comment()') 发送
-      .dynamic-eare
-        .title-content(ng-repeat="result in results")
-          img.title-img(src='public/images/a0.jpg')
-          p.title-name(ng-bind='result.username')
-          p.title-time(ng-bind='result.creationDate')
-          p.title-text(ng-bind='result.dynamic_text')
-append scripts
-  script(src="public/js/index.js")
+.index-container(ng-controller='indexCtrl')
+  .index-top
+    .person-content
+      .conten-left.col-sm-7
+        img.person-header(src='public/images/a0.jpg')
+        span.user-info
+          span.username
+            span #{user.username}
+            span.from from China
+      .content-right.col-sm-5
+        span.following
+          span.num.h3.block.font-bold 200
+          span.info Following
+        span.followers
+          span.num.h3.block.font-bold 2K
+          span.info Followers
+  .index-content
+    .editDynamic
+      textarea.myDynamic(ng-model='myDynamic',placeholder='说点什么吧...')
+      .edit-area
+        span.face
+        button.comment.btn.btn-info.pull-right.btn-sm(ng-click='comment()') 发送
+    .dynamic-eare
+      .title-content(ng-repeat="result in results")
+        img.title-img(src='public/images/a0.jpg')
+        p.title-name(ng-bind='result.username')
+        p.title-time(ng-bind='result.creationDate')
+        p.title-text(ng-bind='result.dynamic_text')
+
 
 

@@ -8,14 +8,17 @@ html
   body(ng-app='myApp')
     include header
     include slider
-    block content
+    div(ng-view)
   block scripts
     script.
       var _username = '#{user.username}'
     script(src="bower_components/jquery/dist/jquery.min.js")
     script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
     script(src="bower_components/angular/angular.min.js")
+    script(src="bower_components/angular-route/angular-route.min.js")
     script(src="bower_components/toastr/toastr.js")
     script(src="public/js/main.js")
-
+    script(src="public/js/index.js")
+    script(src="public/js/slider.js")
+    script(src="public/js/compressed/charts/mainCharts.js")
 

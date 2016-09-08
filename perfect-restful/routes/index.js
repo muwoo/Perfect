@@ -8,6 +8,6 @@ exports.index = function(req, res, next){
       res.redirect('/login');
     }
   } else if (req.session.user) {
-    res.render('index', {user:{title: '首页',username:req.session.user,index:true} });
+    res.render('layout', {user:{title: '首页',username:req.session.user,index:true} });
   }
 };

@@ -1,4 +1,16 @@
-var myAppTest = angular.module("myAppTest", []);
+var myAppTest = angular.module("myAppTest", ['ngRoute']);
+myAppTest.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+      .when("/page", {
+        templateUrl: "/page"
+      })
+      .when("/charts", {
+        templateUrl: "/charts"
+      })
+      .otherwise({
+        redirectTo: "/page"
+      });
+  }]);
 
 myAppTest.service('server', function ($http) {
   this.ajax = function (type, url, data, callback) {
