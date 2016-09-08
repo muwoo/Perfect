@@ -26,9 +26,9 @@ block content
       .dynamic-eare
         .title-content(ng-repeat="result in results")
           img.title-img(src='public/images/a0.jpg')
-          p.title-name {{result.username}}
-          p.title-time {{result.creationDate}}
-          p.title-text {{result.dynamic_text}}
+          p.title-name(ng-bind='result.username')
+          p.title-time(ng-bind='result.creationDate')
+          p.title-text(ng-bind='result.dynamic_text')
 append scripts
   script(src="public/js/index.js")
 
