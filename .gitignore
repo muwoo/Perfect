@@ -1,1 +1,8 @@
-# Created by .ignore support plugin (hsz.mobi)
+
+perfect-web/bower_components/
+
+/perfect-web/public/js
+/perfect-web/public/css
+/.idea
+/perfect-restful/node_modules
+perfect-web/node_modules/
