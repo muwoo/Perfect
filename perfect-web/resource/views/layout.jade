@@ -4,13 +4,21 @@ html
     title= user.title
     link(href="//libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css",rel="stylesheet")
     link(href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet")
-    link(rel='stylesheet', href='/css/index.css')
-  body
+    link(rel='stylesheet', href='public/css/index.css')
+  body(ng-app='myApp')
     include header
     include slider
-    block content
-  script.
-    var _username = '#{user.username}'
-  script(src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js")
-  script(src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js")
-  script(src="/js/index.js")
+    div(ng-view)
+  block scripts
+    script.
+      var _username = '#{user.username}'
+    script(src="bower_components/jquery/dist/jquery.min.js")
+    script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+    script(src="bower_components/angular/angular.min.js")
+    script(src="bower_components/angular-route/angular-route.min.js")
+    script(src="bower_components/toastr/toastr.js")
+    script(src="public/js/main.js")
+    script(src="public/js/index.js")
+    script(src="public/js/slider.js")
+    script(src="public/js/compressed/charts/mainCharts.js")
+

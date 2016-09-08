@@ -1,10 +1,12 @@
 # Perfect
 
 ##项目安装
-
+    安装nodejs
 ####前端
     cd Perfect/perfect-web
+    npm install bower -g
     npm install
+    bower install
     gulp build
     gulp watch
 
@@ -35,7 +37,18 @@
       primary key (`id`),
       unique key `user__username` (`username`)
     ) engine=innodb default charset=utf8 collate=utf8_bin;
+
+    create table `user_dynamic` (
+          `username` varchar(50) default null,
+          `dynamic_text` varchar(500) default null,
+          `dynamic_commend` varchar(300) default null,
+          `creationDate` bigint(20) default null,
+          `image` varchar(100) default null,
+          `id` varchar(32) NOT null,
+        ) engine=innodb default charset=utf8 collate=utf8_bin;
+
 ######2.启动：
     cd Perfect/perfect-restful
     npm start
+    http://localhost:3000
 

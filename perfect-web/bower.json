@@ -1,0 +1,25 @@
+{
+  "name": "perfect",
+  "description": "this is perfect",
+  "main": "gulpfile.js",
+  "authors": [
+    "weiwang"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/monkeyWangs/Perfect",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "bootstrap": "^3.3.7",
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "toastr": "^2.1.3"
+  }
+}

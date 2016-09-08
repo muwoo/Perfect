@@ -78,7 +78,7 @@ exports.users = {
       if (err) {
         return next(err);
       } else {
-        conn.query('select * from user_dynamic where id = "' + id +'"', [], function (err, result) {
+        conn.query('select * from user_dynamic where id = "' + id +'" order by creationDate desc', [], function (err, result) {
           if (err) {
           } else {
             console.log(result);
@@ -87,6 +87,29 @@ exports.users = {
               return;
             }
             res.send({'status': 1, 'msg': '查询错误'});
+          }
+        });
+      }
+    })
+  },
+  page:function(req, res){
+    res.render('index',{user:{title: '个人中心',username:req.session.user,index:true} })
+  },
+  comment: function(req, res){
+    req.getConnection(function (err, conn) {
+      if (err) {
+        return next(err);
+      } else {
+        conn.query('insert into user_dynamic (username,dynamic_text,creationDate,id) values("'+req.session.user+'","'+req.body.content+'","'+req.body.date+'","'+req.session.userid+'")', [], function (err, result) {
+          if (err) {
+          } else {
+            console.log(result);
+            res.send({'status': 0, 'result': result});
+            //if(result.length){
+            //  res.send({'status': 0, 'result': result});
+            //  return;
+            //}
+            //res.send({'status': 1, 'msg': '查询错误'});
           }
         });
       }

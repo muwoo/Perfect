@@ -2,11 +2,11 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users').users;
+var charts = require('./routes/charts');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
@@ -37,8 +37,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../perfect-web/public')));
-
+app.use(express.static(path.join(__dirname, '../perfect-web/')));
 //用户路由
 app.get('/', routes.index);
 app.get('/login', users.renderLogin);
@@ -47,7 +46,11 @@ app.get('/logout', users.logout);
 
 //个人动态路由
 app.post('/getDynamic', users.getDynamic);
+app.get('/page', users.page);
+app.post('/comment', users.comment);
 
+//图表
+app.get('/charts', charts.charts);
 
 
 // catch 404 and forward to error handler
