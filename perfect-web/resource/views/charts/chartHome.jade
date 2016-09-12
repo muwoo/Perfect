@@ -24,3 +24,9 @@
           .panel-heading.font-bold orderBar
           .panel-body.text-center
             div(ui-jq="plot",ui-options="[{ label: 'A', data: {{d1_1}} },{ label: 'B', data: {{d1_2}} },{ label: 'C', data: {{d1_3}} }],{{orderBarParams}}",style="height:240px")
+    .row
+      .col-md-6
+        .panel.panel-default
+          .panel-heading.font-bold myDynamic
+          .panel-body.text-center
+            div(ui-jq="plot",ui-options="[{ data: {{myData}}, points: { show: true, radius: 6}, splines: { show: true, tension: 0.45, lineWidth: 5, fill: 0 } }],{{splineDynamic}}",style="height:240px")

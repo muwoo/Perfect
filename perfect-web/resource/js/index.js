@@ -1,9 +1,7 @@
-import {formatDate} from './common/format-time';
-
 var myApp = angular.module('myApp',['myAppTest']);
 
 //首页
-myApp.controller('indexCtrl', function ($scope, server) {
+myApp.controller('indexCtrl', function ($scope, server,formatDate) {
   var $hideLi = $('.perfect-nav .hide-li');
   var $perfectPills = $('.perfect-pills');
   var tag = true;
@@ -21,7 +19,7 @@ myApp.controller('indexCtrl', function ($scope, server) {
     if (!err) {
       $scope.results = result.result;
       $.each($scope.results, function (i, r) {
-        r.creationDate = formatDate(r.creationDate);
+        r.creationDate = formatDate.getDate(r.creationDate);
       })
     }
   })
@@ -37,7 +35,7 @@ myApp.controller('indexCtrl', function ($scope, server) {
             toastr.success('发表成功');
             $scope.results = result.result;
             $.each($scope.results, function (i, r) {
-              r.creationDate = formatDate(r.creationDate);
+              r.creationDate = formatDate.getDate(r.creationDate);
             })
           }
         })
