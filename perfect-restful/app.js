@@ -19,7 +19,7 @@ var mysql = require('mysql'),
     user: 'root',
     password: '',
     port: 3306,
-    database: 'test'
+    database: 'myproject'
   };
 // view engine setup
 app.set('views', path.join(__dirname, '../perfect-web/resource/views'));
