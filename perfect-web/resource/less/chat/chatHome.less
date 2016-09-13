@@ -1,4 +1,65 @@
-.chatHome-container{
-  margin-top:50px;
-  height: 1000px;
+.chatHome-container {
+  margin-top: 50px;
+  border-left: 1px solid #dee5e7;
+  .nav-tabs.nav-justified {
+    .active {
+      a {
+        color:#98A6AD;
+        border-color: #fff;
+        border-bottom: 1px solid #23b7e5;
+      }
+      a:hover{
+        border-color: #fff;
+        border-bottom: 1px solid #23b7e5;
+      }
+    }
+    a{
+      color:#98A6AD;
+      height: 52px;
+      font-size: 16px;
+      line-height: 32px;
+      border-color: #fff;
+      background: #fff;
+    }
+    a:hover{
+      border-color: #fff;
+    }
+  }
+  .tab-content{
+    .my-friends{
+      padding: 10px;
+      ul{
+        padding: 0;
+        padding-top: 20px;
+        list-style: none;
+        li{
+          position: relative;
+          img{
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+          }
+          .my-friends-title{
+            position: absolute;
+            top:0px;
+            left:45px;
+          }
+          .my-friends-discrip{
+            position: absolute;
+            top:18px;
+            left:45px;
+            color:#bbb;
+            display: inline-block;
+            width: 170px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+          }
+        }
+      }
+    }
+  }
+}
+.w-md {
+  width: 240px;
 }

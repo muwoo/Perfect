@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users').users;
-var drictive = require('./routes/drictive');
+var drictive = require('./routes/drictive').drictive;
 var charts = require('./routes/charts');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -19,7 +19,7 @@ var mysql = require('mysql'),
     user: 'root',
     password: '',
     port: 3306,
-    database: 'test'
+    database: 'myproject'
   };
 // view engine setup
 app.set('views', path.join(__dirname, '../perfect-web/resource/views'));
@@ -36,7 +36,7 @@ app.use(session({
 app.use(myConnection(mysql, dbOptions, 'single'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../perfect-web/')));
 //用户路由
@@ -44,6 +44,7 @@ app.get('/', routes.index);
 app.get('/login', users.renderLogin);
 app.post('/ajaxLogin', users.login);
 app.get('/logout', users.logout);
+app.post('/getFriendsList',users.getFriendsList);
 app.get('/register', users.renderRegister);
 app.post('/ajaxRegister', users.register);
 
@@ -57,9 +58,9 @@ app.get('/charts', charts.charts);
 
 //drictive
 app.get('/header', drictive.header);
-
+app.get('/chat', drictive.chat);
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -70,7 +71,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -81,7 +82,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,

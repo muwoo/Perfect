@@ -80,7 +80,6 @@ exports.users = {
           } else {
             for(var i = 0;i<result.length;i++){
               if(mixCrypto.decrypt(result[i].password) === password){
-                console.log(result[i]);
                 req.session.user = username;
                 req.session.userid = result[i].id;
                 res.render('index', {'user': username});
@@ -136,6 +135,34 @@ exports.users = {
             //  return;
             //}
             //res.send({'status': 1, 'msg': '查询错误'});
+          }
+        });
+      }
+    })
+  },
+  getFriendsList: function(req,res){
+    req.getConnection(function (err, conn) {
+      if (err) {
+        return next(err);
+      } else {
+        conn.query('select friendsId from friends where userid='+req.session.userid, [], function (err, result) {
+          if (err) {
+          } else {
+            var friends = [];
+            var _script = 0;
+            for(var i=0;i<result.length;i++){
+              conn.query('select * from user where id="'+result[i].friendsId+'"', [], function (err, r) {
+                if(err){
+                  console.log(err);
+                }else{
+                  friends.push(r);
+                  _script++;
+                  if(_script === result.length){
+                    res.send({'status': 0, 'result': friends})
+                  }
+                }
+              })
+            }
           }
         });
       }

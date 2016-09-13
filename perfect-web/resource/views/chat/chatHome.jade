@@ -1,4 +1,26 @@
-.chatHome-container.col-sm-2
- p 123
-
-
+.chatHome-container.col.w-md
+  ul.nav.nav-tabs.nav-justified
+    li.active
+      a(href='#friends',data-toggle='tab')
+        .tab-heading
+          i.glyphicon.glyphicon-user
+    li
+      a(href='#comment',data-toggle='tab')
+        .tab-heading
+          i.glyphicon.glyphicon-comment
+    li
+      a(href='#transfer',data-toggle='tab')
+        .tab-heading
+          i.glyphicon.glyphicon-transfer
+  .tab-content
+    #friends.tab-pane.active
+      div.my-friends 我的好友
+        ul(ng-repeat='friend in friendsList')
+          li
+            img(src='public/images/a0.jpg')
+            span.my-friends-title(ng-bind='friend[0].username')
+            span.my-friends-discrip(ng-bind='friend[0].discribe')
+    #comment.tab-pane
+      p 消息记录
+    #transfer.tab-pane
+      p 动态中心

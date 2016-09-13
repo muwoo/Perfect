@@ -9,9 +9,8 @@ html
     div(list-menu)
     include slider
     .perfect-container
-      div(ui-view).col-sm-10
-      include chat/chatHome
-
+      div(ui-view).col
+      chat-menu
   block scripts
     script.
       var _username = '#{user.username}'
@@ -24,7 +23,7 @@ html
     script(src="bower_components/toastr/toastr.js")
     //drictive
     script(src="public/js/compressed/drictive/list-menu.js")
-
+    script(src="public/js/compressed/drictive/chat-menue.js")
     script(src="public/js/main.js")
     script(src="public/js/index.js")
     script(src="public/js/slider.js")

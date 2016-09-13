@@ -49,7 +49,7 @@ myApp.controller('chartsCtrl', function ($scope, server, formatDate, dynamic) {
 //动态数据 绘制说说发表折线图
 
   /*
-  ** 计算日期之间相差的月份
+   ** 计算日期之间相差的月份
    */
   function getYearAndMonth(start, end) {
     var starts = start.split('-');
@@ -81,30 +81,36 @@ myApp.controller('chartsCtrl', function ($scope, server, formatDate, dynamic) {
 
   $scope.ticks = []; //折线图x轴描述
   $scope.myData = [];//折线图数据
-  $scope.results = dynamic.data.result;//个人动态数据
-  
-  var tag = $scope.results.length - 1;//时间戳最后一天下标
-  var endDate = $scope.results[tag].creationDate;
-  
-  $scope.ticks.push([1, new Date(endDate).getFullYear() + '-' + (new Date(endDate).getMonth() + 1)]);//x轴起点描述
+  if (dynamic.data.result === undefined) {
+    $scope.ticks.push([1, formatDate.getDate(new Date().getTime())]);
+    $scope.myData.push([1, 0]);
+  }
+  else {
+    $scope.results = dynamic.data.result;//个人动态数据
 
-  $scope.minDate = formatDate.getDate(endDate);//最早评论日期
-  $scope.nowDate = formatDate.getDate(new Date().getTime());//当前日期
-  $scope.ticks = getYearAndMonth($scope.minDate, $scope.nowDate);
-  /*
-  * 寻找每个月的动态量
-   */
-  for (var j = 0; j < $scope.ticks.length; j++) {
-    var k = 0;
-    $.each($scope.results, function (i, r) {
-      if ((new Date(r.creationDate).getFullYear() + '-' + (new Date(r.creationDate).getMonth() + 1)) === $scope.ticks[j][1]) {
-        k++;
-      }
-    });
-    $scope.myData.push([j + 1, k]);
+    var tag = $scope.results.length - 1;//时间戳最后一天下标
+    var endDate = $scope.results[tag].creationDate;
+
+    $scope.ticks.push([1, new Date(endDate).getFullYear() + '-' + (new Date(endDate).getMonth() + 1)]);//x轴起点描述
+
+    $scope.minDate = formatDate.getDate(endDate);//最早评论日期
+    $scope.nowDate = formatDate.getDate(new Date().getTime());//当前日期
+    $scope.ticks = getYearAndMonth($scope.minDate, $scope.nowDate);
+    /*
+     * 寻找每个月的动态量
+     */
+    for (var j = 0; j < $scope.ticks.length; j++) {
+      var k = 0;
+      $.each($scope.results, function (i, r) {
+        if ((new Date(r.creationDate).getFullYear() + '-' + (new Date(r.creationDate).getMonth() + 1)) === $scope.ticks[j][1]) {
+          k++;
+        }
+      });
+      $scope.myData.push([j + 1, k]);
+    }
   }
   /*
-  * 设置参数
+   * 设置参数
    */
   $scope.splineDynamic = {
     colors: ['#7266ba'],
@@ -119,5 +125,6 @@ myApp.controller('chartsCtrl', function ($scope, server, formatDate, dynamic) {
     tooltip: true,
     tooltipOpts: {content: '%x 的动态数量是 %y.0', defaultTheme: false, shifts: {x: 0, y: 10}}
   };
+
 
 });

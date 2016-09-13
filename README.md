@@ -44,9 +44,15 @@
           `dynamic_commend` varchar(300) default null,
           `creationDate` bigint(20) default null,
           `image` varchar(100) default null,
-          `id` varchar(32) NOT null,
+          `id` varchar(32) NOT null
         ) engine=innodb default charset=utf8 collate=utf8_bin;
-
+    alter table user add COLUMN discribe VARCHAR(200) default '个性签名';
+    create table friends (
+            `userid` varchar(32) NOT null,
+            friendsId varchar(32) NOT null,
+            `id` int(4) NOT NULL auto_increment,
+            primary key (`id`)
+            )engine=innodb default charset=utf8 collate=utf8_bin;
 ######2.启动：
     cd Perfect/perfect-restful
     npm start
