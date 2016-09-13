@@ -1,5 +1,6 @@
 var crypto=require('crypto');
 var $=require('underscore');
+var uuid = require('node-uuid');
 //密码加密解密
 var DEFAULTS = {
   encoding: {
@@ -9,8 +10,9 @@ var DEFAULTS = {
   algorithms: ['bf', 'blowfish', 'aes-128-cbc']
 };
 function MixCrypto(options) {
-  if (typeof options == 'string')
+  if (typeof options == 'string'){
     options = { key: options };
+  }
 
   options = $.extend({}, DEFAULTS, options);
   this.key = options.key;
@@ -39,14 +41,31 @@ MixCrypto.prototype.decrypt = function (crypted) {
 };
 
 exports.users = {
-  register:function (req, res) {
+  renderRegister:function (req, res) {
+    res.render('register', {'title': '注册'});
+  },
+  register:function(req,res){
+    var email = req.body.email;
+    var password = req.body.password;
+    var username = req.body.username;
     req.getConnection(function (err, conn) {
       if (err) {
         return next(err);
+      } else {
+        var mixCrypto = new MixCrypto('string');
+        var passwordMd5 = mixCrypto.encrypt(password);
+        var userId = uuid.v1().replace(/-/g, '');
+        conn.query('INSERT INTO user (username, enabled, id, password) VALUES ("'+username+'", "1", "'+userId+'", "'+passwordMd5+'")', [], function (err, result) {
+          if (err) {
+          } else {
+            console.log(result);
+            req.session.user = username;
+            req.session.userid = userId;
+            res.redirect('/');
+          }
+        });
       }
-
     });
-    res.render('register', {'title': '注册'});
   },
   login: function (req, res) {
     var username = req.body.username;

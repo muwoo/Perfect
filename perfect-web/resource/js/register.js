@@ -9,10 +9,10 @@ myApp.controller('registerCtrl', function($scope,$http) {
   $scope.firstName = '';
   $scope.RegisterErr = '123123';
   $scope.show = false;
-  $scope.login = function(e){
+  $scope.register = function(e){
     $http({
       method: "POST",
-      url: "/registerUser",
+      url: "/ajaxRegister",
       data:{
         'username':$scope._username,
         'email':$scope._email,
@@ -25,12 +25,13 @@ myApp.controller('registerCtrl', function($scope,$http) {
         $scope.RegisterErr = "用户名或密码错误";
       }
       else {
-        window.location.href = '/';
+        window.location.href = '/register';
       }
     }).
     error(function(data, status) {
       $scope.RegisterErr = status;
     });
+    // return false;
   };
 
 });
