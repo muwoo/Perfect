@@ -6,9 +6,12 @@ html
     link(href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet")
     link(rel='stylesheet', href='public/css/index.css')
   body(ng-app='myApp')
-    include header
+    div(list-menu)
     include slider
-    div(ui-view)
+    .container
+      div(ui-view).col-sm-9
+      include chat/chatHome
+
   block scripts
     script.
       var _username = '#{user.username}'
@@ -19,6 +22,9 @@ html
     script(src="bower_components/angular-ui-load/ui-load.js")
     script(src="bower_components/angular-ui-jq/ui-jq.js")
     script(src="bower_components/toastr/toastr.js")
+    //drictive
+    script(src="public/js/compressed/drictive/list-menu.js")
+
     script(src="public/js/main.js")
     script(src="public/js/index.js")
     script(src="public/js/slider.js")

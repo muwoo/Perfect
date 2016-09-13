@@ -1,4 +1,4 @@
-var myAppTest = angular.module("myAppTest", ['ui.router', 'ui.jq']);
+var myAppTest = angular.module("myAppTest", ['ui.router', 'ui.jq','list.menu']);
 myAppTest.constant('JQ_CONFIG', {//合并库
     easyPieChart: ['bower_components/jquery.easy-pie-chart/dist/jquery.easy-pie-chart.js'],
     sparkline: ['bower_components/jquery-sparkline/dist/jquery.sparkline.min.js'],
