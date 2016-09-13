@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title= title
+    link(href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css",rel="stylesheet")
+    link(rel='stylesheet', href='public/css/login.css')
+  body(ng-app='myApp',ng-controller="registerCtrl")
+    .container
+      .container-login
+        .login-title Perfect {{firstName}}
+        .login-info
+          strong Sign up to find interesting thing
+        form.login-form
+          .form-group
+            input.login-input.username(type='text',placeholder='用户名',ng-model='_username')
+          .form-group
+            input.login-input.email(type='email',placeholder='邮箱',ng-model='_email')
+          .form-group
+            input.login-input.password(type='password',placeholder='密码',ng-model='_password')
+          .err-msg(ng-show='show') {{RegisterErr}}
+          .form-group
+            button.login-input.btn.login-btn(ng-click='login()') 登录
+        .info-area
+          .forgot-pwd-info 忘记密码
+          .register-info 注册一个新账号
+          button.to-register.btn 创建账号
+
+  script(src="bower_components/jquery/dist/jquery.min.js")
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+  script(src="bower_components/angular/angular.min.js")
+  script(src="public/js/register.js")
+

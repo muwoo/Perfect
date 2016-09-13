@@ -39,6 +39,15 @@ MixCrypto.prototype.decrypt = function (crypted) {
 };
 
 exports.users = {
+  register:function (req, res) {
+    req.getConnection(function (err, conn) {
+      if (err) {
+        return next(err);
+      }
+
+    });
+    res.render('register', {'title': '注册'});
+  },
   login: function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -52,7 +61,7 @@ exports.users = {
           } else {
             for(var i = 0;i<result.length;i++){
               if(mixCrypto.decrypt(result[i].password) === password){
-                console.log(result[i])
+                console.log(result[i]);
                 req.session.user = username;
                 req.session.userid = result[i].id;
                 res.render('index', {'user': username});

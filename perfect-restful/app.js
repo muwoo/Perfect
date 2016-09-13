@@ -18,7 +18,7 @@ var mysql = require('mysql'),
     user: 'root',
     password: '',
     port: 3306,
-    database: 'myproject'
+    database: 'test'
   };
 // view engine setup
 app.set('views', path.join(__dirname, '../perfect-web/resource/views'));
@@ -43,6 +43,7 @@ app.get('/', routes.index);
 app.get('/login', users.renderLogin);
 app.post('/ajaxLogin', users.login);
 app.get('/logout', users.logout);
+app.get('/register', users.register);
 
 //个人动态路由
 app.post('/getDynamic', users.getDynamic);
