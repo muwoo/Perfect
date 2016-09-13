@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users').users;
+var drictive = require('./routes/drictive');
 var charts = require('./routes/charts');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -53,6 +54,8 @@ app.post('/comment', users.comment);
 //图表
 app.get('/charts', charts.charts);
 
+//drictive
+app.get('/header', drictive.header);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

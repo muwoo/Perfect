@@ -2,19 +2,7 @@ var myApp = angular.module('myApp',['myAppTest']);
 
 //首页
 myApp.controller('indexCtrl', function ($scope, server,formatDate) {
-  var $hideLi = $('.perfect-nav .hide-li');
-  var $perfectPills = $('.perfect-pills');
-  var tag = true;
-  $hideLi.on('click', function (e) {
-    if (tag) {
-      $perfectPills.show();
-      tag = false;
-    }
-    else {
-      $perfectPills.hide();
-      tag = true;
-    }
-  });
+
   server.post('/getDynamic', {}, function (err, result) {
     if (!err) {
       $scope.results = result.result;
