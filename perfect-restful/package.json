@@ -9,14 +9,17 @@
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "engine.io": "^1.6.11",
     "express": "~4.13.4",
     "express-myconnection": "^1.0.4",
     "express-session": "^1.14.0",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
     "mysql": "^2.11.1",
+    "node-uuid": "1.4.7",
     "serve-favicon": "~2.3.0",
-    "underscore": "^1.8.3",
-    "node-uuid":"1.4.7"
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8",
+    "underscore": "^1.8.3"
   }
 }

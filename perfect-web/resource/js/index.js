@@ -2,7 +2,6 @@ var myApp = angular.module('myApp',['myAppTest']);
 
 //首页
 myApp.controller('indexCtrl', function ($scope, server,formatDate) {
-
   server.post('/getDynamic', {}, function (err, result) {
     if (!err) {
       $scope.results = result.result;

@@ -27,6 +27,7 @@
     "Flot": "flot#^0.8.3",
     "angular-ui-jq": "^0.1.1",
     "angular-ui-load": "^0.1.1",
-    "flot-spline": "^0.8.2"
+    "flot-spline": "^0.8.2",
+    "socket.io": "^1.4.8"
   }
 }

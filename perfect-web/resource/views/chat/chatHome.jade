@@ -11,16 +11,22 @@
     li
       a(href='#transfer',data-toggle='tab')
         .tab-heading
-          i.glyphicon.glyphicon-transfer
+          i.glyphicon.glyphicon-plus
   .tab-content
     #friends.tab-pane.active
       div.my-friends 我的好友
         ul(ng-repeat='friend in friendsList')
-          li
+          li.friend(ng-click='chatWithMe(friend[0])',title='点击和我聊天吧！')
             img(src='public/images/a0.jpg')
             span.my-friends-title(ng-bind='friend[0].username')
             span.my-friends-discrip(ng-bind='friend[0].discribe')
     #comment.tab-pane
-      p 消息记录
+      div.my-msg 消息记录
+        ul(ng-repeat='msg in msgList')
+          li.friend(ng-click='chatWithMe(msg.data.user)',title='点击和我聊天吧！')
+            img(src='public/images/a0.jpg')
+            span.my-friends-title(ng-bind='msg.data.user.username')
+            span.my-friends-discrip(ng-bind='msg.lastMsg')
     #transfer.tab-pane
       p 动态中心
+  include chatWindow

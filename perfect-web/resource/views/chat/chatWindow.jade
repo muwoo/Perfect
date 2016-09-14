@@ -1,0 +1,14 @@
+.chatWindow(ng-controller='chatCtrl')
+  .header
+    .title
+      img(src='public/images/a0.jpg')
+      span.chat-name {{me.username}}
+      span.chat-discribe {{me.discribe}}
+      span.chat-close.glyphicon.glyphicon-remove(ng-click='closeChat()')
+  .body
+    .chatContent
+  .footer
+    .toolBar
+    .chat-msg
+      textarea.chat-msg(ng-model='message')
+      button.btn.btn-success.msg-send(ng-click='sendMsg(me.id)') 发送

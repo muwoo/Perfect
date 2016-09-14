@@ -82,6 +82,7 @@ exports.users = {
               if(mixCrypto.decrypt(result[i].password) === password){
                 req.session.user = username;
                 req.session.userid = result[i].id;
+                req.session.discribe = result[i].discribe;
                 res.render('index', {'user': username});
                 return;
               }

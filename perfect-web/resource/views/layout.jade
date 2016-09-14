@@ -13,7 +13,9 @@ html
       chat-menu
   block scripts
     script.
-      var _username = '#{user.username}'
+      var _username = '#{user.username}';
+      var _userid = '#{user.userid}';
+      var _discribe ='#{user.discribe}';
     script(src="bower_components/jquery/dist/jquery.min.js")
     script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
     script(src="bower_components/angular/angular.min.js")
@@ -21,6 +23,7 @@ html
     script(src="bower_components/angular-ui-load/ui-load.js")
     script(src="bower_components/angular-ui-jq/ui-jq.js")
     script(src="bower_components/toastr/toastr.js")
+    script(src="//cdn.bootcss.com/socket.io/1.4.8/socket.io.min.js")
     //drictive
     script(src="public/js/compressed/drictive/list-menu.js")
     script(src="public/js/compressed/drictive/chat-menue.js")
@@ -28,4 +31,5 @@ html
     script(src="public/js/index.js")
     script(src="public/js/slider.js")
     script(src="public/js/compressed/charts/mainCharts.js")
+    script(src="public/js/chat.js")
 
