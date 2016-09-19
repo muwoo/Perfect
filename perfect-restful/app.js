@@ -46,6 +46,7 @@ app.post('/ajaxLogin', users.login);
 app.get('/logout', users.logout);
 app.post('/getFriendsList',users.getFriendsList);
 app.post('/updateChatMsg',users.updateChatMsg);
+app.post('/updateBadge',users.updateBadge);
 app.get('/register', users.renderRegister);
 app.post('/ajaxRegister', users.register);
 

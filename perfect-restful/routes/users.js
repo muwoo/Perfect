@@ -151,7 +151,7 @@ exports.users = {
           } else {
             var friends = [];
             var _script = 0;
-            var container = result;
+            var sum = 0;
             for (var i = 0; i < result.length; i++) {
               var msg = result[i].chat_msg;
               conn.query('select * from user where id="' + result[i].friendsId + '"', [], function (err, r) {
@@ -160,9 +160,12 @@ exports.users = {
                     console.log(err);
                   } else {
                     friends.push({friend: r, chat: this[_script].chat_msg});
+                    if (this[_script].badge !== null) {
+                      sum = parseInt(this[_script].badge) + sum;
+                    }
                     _script++;
                     if (_script === this.length) {
-                      res.send({'status': 0, 'result': friends})
+                      res.send({'status': 0, 'result': friends, 'badge': sum})
                     }
                   }
                 }
@@ -200,6 +203,22 @@ exports.users = {
         });
 
       }
+    });
+  },
+  updateBadge: function (req, res) {
+    var badge = req.body.badge;
+    var fromUserId = req.body.fromUserId;
+    var toUserId = req.session.userid;
+    req.getConnection(function (err, conn) {
+      conn.query("select * from friends where userid='" + toUserId + "' and friendsId = '" + fromUserId + "'", [], function (err, result) {
+        conn.query("update friends set badge='" + badge + "'where userid='" + toUserId + "' and friendsId = '" + fromUserId + "'", [], function () {
+          function callback(){
+            res.send({'status': 0, 'result': this});
+          }
+          callback.call(result);
+        })
+      })
+
     });
   }
 };
