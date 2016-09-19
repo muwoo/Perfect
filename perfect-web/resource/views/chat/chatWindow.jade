@@ -1,4 +1,4 @@
-.chatWindow(ng-controller='chatCtrl')
+.chatWindow
   .header
     .title
       img(src='public/images/a0.jpg')
@@ -11,4 +11,4 @@
     .toolBar
     .chat-msg
       textarea.chat-msg(ng-model='message')
-      button.btn.btn-success.msg-send(ng-click='sendMsg(me.id)') 发送
+      button.btn.btn-success.msg-send(ng-click='sendMsg(me,msgList)') 发送

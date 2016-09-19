@@ -45,6 +45,7 @@ app.get('/login', users.renderLogin);
 app.post('/ajaxLogin', users.login);
 app.get('/logout', users.logout);
 app.post('/getFriendsList',users.getFriendsList);
+app.post('/updateChatMsg',users.updateChatMsg);
 app.get('/register', users.renderRegister);
 app.post('/ajaxRegister', users.register);
 
@@ -59,6 +60,7 @@ app.get('/charts', charts.charts);
 //drictive
 app.get('/header', drictive.header);
 app.get('/chat', drictive.chat);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');

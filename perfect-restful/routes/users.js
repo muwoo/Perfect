@@ -1,5 +1,5 @@
-var crypto=require('crypto');
-var $=require('underscore');
+var crypto = require('crypto');
+var $ = require('underscore');
 var uuid = require('node-uuid');
 //密码加密解密
 var DEFAULTS = {
@@ -10,8 +10,8 @@ var DEFAULTS = {
   algorithms: ['bf', 'blowfish', 'aes-128-cbc']
 };
 function MixCrypto(options) {
-  if (typeof options == 'string'){
-    options = { key: options };
+  if (typeof options == 'string') {
+    options = {key: options};
   }
 
   options = $.extend({}, DEFAULTS, options);
@@ -41,10 +41,10 @@ MixCrypto.prototype.decrypt = function (crypted) {
 };
 
 exports.users = {
-  renderRegister:function (req, res) {
+  renderRegister: function (req, res) {
     res.render('register', {'title': '注册'});
   },
-  register:function(req,res){
+  register: function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
     var username = req.body.username;
@@ -55,7 +55,7 @@ exports.users = {
         var mixCrypto = new MixCrypto('string');
         var passwordMd5 = mixCrypto.encrypt(password);
         var userId = uuid.v1().replace(/-/g, '');
-        conn.query('INSERT INTO user (username, enabled, id, password) VALUES ("'+username+'", "1", "'+userId+'", "'+passwordMd5+'")', [], function (err, result) {
+        conn.query('INSERT INTO user (username, enabled, id, password) VALUES ("' + username + '", "1", "' + userId + '", "' + passwordMd5 + '")', [], function (err, result) {
           if (err) {
           } else {
             console.log(result);
@@ -78,8 +78,8 @@ exports.users = {
         conn.query('select * from user where username = "' + username + '"', [], function (err, result) {
           if (err) {
           } else {
-            for(var i = 0;i<result.length;i++){
-              if(mixCrypto.decrypt(result[i].password) === password){
+            for (var i = 0; i < result.length; i++) {
+              if (mixCrypto.decrypt(result[i].password) === password) {
                 req.session.user = username;
                 req.session.userid = result[i].id;
                 req.session.discribe = result[i].discribe;
@@ -100,16 +100,16 @@ exports.users = {
     req.session.user = null;
     res.redirect('/login');
   },
-  getDynamic: function(req, res) {
+  getDynamic: function (req, res) {
     var id = req.session.userid;
     req.getConnection(function (err, conn) {
       if (err) {
         return next(err);
       } else {
-        conn.query('select * from user_dynamic where id = "' + id +'" order by creationDate desc', [], function (err, result) {
+        conn.query('select * from user_dynamic where id = "' + id + '" order by creationDate desc', [], function (err, result) {
           if (err) {
           } else {
-            if(result.length){
+            if (result.length) {
               res.send({'status': 0, 'result': result});
               return;
             }
@@ -119,15 +119,15 @@ exports.users = {
       }
     })
   },
-  page:function(req, res){
-    res.render('index',{user:{title: '个人中心',username:req.session.user,index:true} })
+  page: function (req, res) {
+    res.render('index', {user: {title: '个人中心', username: req.session.user, index: true}})
   },
-  comment: function(req, res){
+  comment: function (req, res) {
     req.getConnection(function (err, conn) {
       if (err) {
         return next(err);
       } else {
-        conn.query('insert into user_dynamic (username,dynamic_text,creationDate,id) values("'+req.session.user+'","'+req.body.content+'","'+req.body.date+'","'+req.session.userid+'")', [], function (err, result) {
+        conn.query('insert into user_dynamic (username,dynamic_text,creationDate,id) values("' + req.session.user + '","' + req.body.content + '","' + req.body.date + '","' + req.session.userid + '")', [], function (err, result) {
           if (err) {
           } else {
             res.send({'status': 0, 'result': result});
@@ -141,32 +141,65 @@ exports.users = {
       }
     })
   },
-  getFriendsList: function(req,res){
+  getFriendsList: function (req, res) {
     req.getConnection(function (err, conn) {
       if (err) {
         return next(err);
       } else {
-        conn.query('select friendsId from friends where userid='+req.session.userid, [], function (err, result) {
+        conn.query('select * from friends where userid=' + req.session.userid, [], function (err, result) {
           if (err) {
           } else {
             var friends = [];
             var _script = 0;
-            for(var i=0;i<result.length;i++){
-              conn.query('select * from user where id="'+result[i].friendsId+'"', [], function (err, r) {
-                if(err){
-                  console.log(err);
-                }else{
-                  friends.push(r);
-                  _script++;
-                  if(_script === result.length){
-                    res.send({'status': 0, 'result': friends})
+            var container = result;
+            for (var i = 0; i < result.length; i++) {
+              var msg = result[i].chat_msg;
+              conn.query('select * from user where id="' + result[i].friendsId + '"', [], function (err, r) {
+                function test() {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    friends.push({friend: r, chat: this[_script].chat_msg});
+                    _script++;
+                    if (_script === this.length) {
+                      res.send({'status': 0, 'result': friends})
+                    }
                   }
                 }
+
+                test.call(result);
+
               })
             }
           }
         });
       }
     })
+  },
+  updateChatMsg: function (req, res) {
+    var fromUser = req.body.user.username;
+    var fromId = req.body.user.id;
+    var toUser = req.session.user;
+    var toId = req.session.userid;
+    var Mycontent = req.body.content;
+    req.getConnection(function (err, conn) {
+      if (err) {
+        return next(err);
+      } else {
+        conn.query('select * from friends where (userid="' + fromId + '" and friendsId="' + toId + '") or (userid="' + toId + '" and friendsId="' + fromId + '")', [], function (err, result) {
+          for (var i = 0; i < result.length; i++) {
+            if (result[i].chat_msg === null) {
+              result[i].chat_msg = '[]';
+            }
+            var content = JSON.parse(result[i].chat_msg);
+            content.push(Mycontent);
+            conn.query("update friends set chat_msg='" + JSON.stringify(content) + "'where userid='" + result[i].userid + "' and friendsId = '" + result[i].friendsId + "'", [], function (err, result) {
+
+            })
+          }
+        });
+
+      }
+    });
   }
 };

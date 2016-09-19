@@ -96,6 +96,7 @@ io.on('connection', function(socket) {
   //接收并处理客户端发送的foo事件
   socket.on('foo', function(data) {
     socket.broadcast.emit(data.id, {
+      time:data.time,
       msg:data.msg,
       user:data.user
     });
