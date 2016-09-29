@@ -53,6 +53,9 @@
             `id` int(4) NOT NULL auto_increment,
             primary key (`id`)
             )engine=innodb default charset=utf8 collate=utf8_bin;
+    alter table friends add COLUMN badge VARCHAR(100);
+    alter table friends add COLUMN chat_msg VARCHAR(20000);
+    alter table user add COLUMN password VARCHAR(200);
 ######2.启动：
     cd Perfect/perfect-restful
     npm start
